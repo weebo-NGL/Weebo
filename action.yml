@@ -1,0 +1,33 @@
+name: TraceBrief
+description: Explain unexpected Playwright failures in a job summary and pull request comment.
+author: TraceBrief
+inputs:
+  report:
+    description: Path to a Playwright JSON reporter file in the workspace.
+    default: playwright-report.json
+  baseline:
+    description: Optional Playwright JSON report from the chosen comparison revision.
+    required: false
+  artifact-url:
+    description: Optional GitHub Actions artifact URL for screenshots and traces from this run.
+    required: false
+  comment:
+    description: Update a comment on same-repository pull requests.
+    default: 'true'
+  openai-api-key:
+    description: Optional OpenAI API key. Supplying it enables AI suggestions on supported runs.
+    required: false
+  model:
+    description: OpenAI model for optional AI suggestions.
+    default: gpt-4o-mini
+  token:
+    description: GitHub Actions workflow token for posting comments.
+    default: ${{ github.token }}
+outputs:
+  failure-count:
+    description: Number of unexpected test outcomes and runner errors.
+  flaky-count:
+    description: Number of tests that recovered on retry.
+runs:
+  using: node24
+  main: src/run.mjs

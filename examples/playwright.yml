@@ -1,0 +1,51 @@
+name: Playwright
+on: [pull_request]
+
+# Keep a newer run on the same PR from competing for the comment.
+concurrency:
+  group: tracebrief-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write # Used by TraceBrief for same-repository PR comments.
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      # Assumes a root npm lockfile, @playwright/test and an existing test configuration.
+      - run: npm ci
+      - run: npx --no-install playwright install --with-deps
+      - name: Run Playwright
+        id: e2e
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_FILE: ${{ github.workspace }}/playwright-report.json
+        run: npx --no-install playwright test --reporter=line,json --trace retain-on-failure --output=test-results
+      - name: Upload failure screenshots and traces
+        id: evidence
+        if: ${{ !cancelled() && steps.e2e.outcome == 'failure' && hashFiles('test-results/**/*.png', 'test-results/**/trace.zip') != '' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: playwright-evidence-${{ github.run_attempt }}
+          path: |
+            test-results/**/*.png
+            test-results/**/trace.zip
+          if-no-files-found: ignore
+          retention-days: 7
+      # Vendor action.yml and src/ under .github/actions/tracebrief/ in the target repo.
+      # A green run clears an earlier failure comment. A test failure still fails the job.
+      - name: Explain Playwright results
+        if: ${{ !cancelled() && (steps.e2e.outcome == 'failure' || steps.e2e.outcome == 'success') && hashFiles('playwright-report.json') != '' }}
+        uses: ./.github/actions/tracebrief
+        with:
+          report: playwright-report.json
+          artifact-url: ${{ steps.evidence.outputs.artifact-url }}

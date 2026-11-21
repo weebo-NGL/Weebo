@@ -1,0 +1,375 @@
+{
+  "config": {
+    "configFile": "demo/reproduce/playwright.config.cjs",
+    "rootDir": "demo/reproduce",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "demo/reproduce/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "checkout-api",
+        "name": "checkout-api",
+        "testDir": "demo/reproduce",
+        "testIgnore": [],
+        "testMatch": [
+          "checkout.spec.cjs"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "checkout-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "checkout.spec.cjs",
+      "file": "checkout.spec.cjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "checkout sends signed-in customers to payment",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "checkout-api",
+              "projectName": "checkout-api",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m\n    at demo/reproduce/checkout.spec.cjs:18:32",
+                    "location": {
+                      "file": "demo/reproduce/checkout.spec.cjs",
+                      "column": 32,
+                      "line": 18
+                    },
+                    "snippet": "  16 |   const response = checkoutRoute({ session: { active: true } });\n  17 |   const destination = new URL(response.headers.get('Location'));\n> 18 |   expect(destination.pathname).toBe('/payment');\n     |                                ^\n  19 | });\n  20 |\n  21 | test('receipt total includes shipping', () => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "demo/reproduce/checkout.spec.cjs",
+                        "column": 32,
+                        "line": 18
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m\n\n  16 |   const response = checkoutRoute({ session: { active: true } });\n  17 |   const destination = new URL(response.headers.get('Location'));\n> 18 |   expect(destination.pathname).toBe('/payment');\n     |                                ^\n  19 | });\n  20 |\n  21 | test('receipt total includes shipping', () => {\n    at demo/reproduce/checkout.spec.cjs:18:32"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:24:02.500Z",
+                  "annotations": [],
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "demo/reproduce/checkout.spec.cjs",
+                    "column": 32,
+                    "line": 18
+                  }
+                },
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m\n    at demo/reproduce/checkout.spec.cjs:18:32",
+                    "location": {
+                      "file": "demo/reproduce/checkout.spec.cjs",
+                      "column": 32,
+                      "line": 18
+                    },
+                    "snippet": "  16 |   const response = checkoutRoute({ session: { active: true } });\n  17 |   const destination = new URL(response.headers.get('Location'));\n> 18 |   expect(destination.pathname).toBe('/payment');\n     |                                ^\n  19 | });\n  20 |\n  21 | test('receipt total includes shipping', () => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "demo/reproduce/checkout.spec.cjs",
+                        "column": 32,
+                        "line": 18
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"/\u001b[7mpayment\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"/\u001b[7msign-in\u001b[27m\"\u001b[39m\n\n  16 |   const response = checkoutRoute({ session: { active: true } });\n  17 |   const destination = new URL(response.headers.get('Location'));\n> 18 |   expect(destination.pathname).toBe('/payment');\n     |                                ^\n  19 | });\n  20 |\n  21 | test('receipt total includes shipping', () => {\n    at demo/reproduce/checkout.spec.cjs:18:32"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2026-11-21T14:24:03.168Z",
+                  "annotations": [],
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "demo/reproduce/checkout.spec.cjs",
+                    "column": 32,
+                    "line": 18
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1eb399c6723b0a43a794-1ef35befdeebc0ca8a09",
+          "file": "checkout.spec.cjs",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "receipt total includes shipping",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "checkout-api",
+              "projectName": "checkout-api",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 13,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m\n    at demo/reproduce/checkout.spec.cjs:23:33",
+                    "location": {
+                      "file": "demo/reproduce/checkout.spec.cjs",
+                      "column": 33,
+                      "line": 23
+                    },
+                    "snippet": "  21 | test('receipt total includes shipping', () => {\n  22 |   const receipt = { subtotal: 25, shipping: 5 };\n> 23 |   expect(receiptTotal(receipt)).toBe(30);\n     |                                 ^\n  24 | });\n  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "demo/reproduce/checkout.spec.cjs",
+                        "column": 33,
+                        "line": 23
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m\n\n  21 | test('receipt total includes shipping', () => {\n  22 |   const receipt = { subtotal: 25, shipping: 5 };\n> 23 |   expect(receiptTotal(receipt)).toBe(30);\n     |                                 ^\n  24 | });\n  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {\n    at demo/reproduce/checkout.spec.cjs:23:33"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:24:03.833Z",
+                  "annotations": [],
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "demo/reproduce/checkout.spec.cjs",
+                    "column": 33,
+                    "line": 23
+                  }
+                },
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m\n    at demo/reproduce/checkout.spec.cjs:23:33",
+                    "location": {
+                      "file": "demo/reproduce/checkout.spec.cjs",
+                      "column": 33,
+                      "line": 23
+                    },
+                    "snippet": "  21 | test('receipt total includes shipping', () => {\n  22 |   const receipt = { subtotal: 25, shipping: 5 };\n> 23 |   expect(receiptTotal(receipt)).toBe(30);\n     |                                 ^\n  24 | });\n  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "demo/reproduce/checkout.spec.cjs",
+                        "column": 33,
+                        "line": 23
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m30\u001b[39m\nReceived: \u001b[31m25\u001b[39m\n\n  21 | test('receipt total includes shipping', () => {\n  22 |   const receipt = { subtotal: 25, shipping: 5 };\n> 23 |   expect(receiptTotal(receipt)).toBe(30);\n     |                                 ^\n  24 | });\n  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {\n    at demo/reproduce/checkout.spec.cjs:23:33"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2026-11-21T14:24:04.446Z",
+                  "annotations": [],
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "demo/reproduce/checkout.spec.cjs",
+                    "column": 33,
+                    "line": 23
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "1eb399c6723b0a43a794-c998998fb207f17703e7",
+          "file": "checkout.spec.cjs",
+          "line": 21,
+          "column": 1
+        },
+        {
+          "title": "checkout service recovers on retry",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "checkout-api",
+              "projectName": "checkout-api",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n    at demo/reproduce/checkout.spec.cjs:27:26",
+                    "location": {
+                      "file": "demo/reproduce/checkout.spec.cjs",
+                      "column": 26,
+                      "line": 27
+                    },
+                    "snippet": "  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {\n> 27 |   expect(testInfo.retry).toBe(1);\n     |                          ^\n  28 | });\n  29 |\n  30 | test('cart tracks item quantities', () => {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "demo/reproduce/checkout.spec.cjs",
+                        "column": 26,
+                        "line": 27
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m1\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n\n  25 |\n  26 | test('checkout service recovers on retry', async ({}, testInfo) => {\n> 27 |   expect(testInfo.retry).toBe(1);\n     |                          ^\n  28 | });\n  29 |\n  30 | test('cart tracks item quantities', () => {\n    at demo/reproduce/checkout.spec.cjs:27:26"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:24:05.055Z",
+                  "annotations": [],
+                  "attachments": [],
+                  "errorLocation": {
+                    "file": "demo/reproduce/checkout.spec.cjs",
+                    "column": 26,
+                    "line": 27
+                  }
+                },
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2026-11-21T14:24:05.645Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "flaky"
+            }
+          ],
+          "id": "1eb399c6723b0a43a794-063f21463c1fa5c56598",
+          "file": "checkout.spec.cjs",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "cart tracks item quantities",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "checkout-api",
+              "projectName": "checkout-api",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:24:05.702Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1eb399c6723b0a43a794-f67136086d496fad6c57",
+          "file": "checkout.spec.cjs",
+          "line": 30,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-21T14:24:01.947Z",
+    "duration": 3805.3559999999998,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 1
+  }
+}

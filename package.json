@@ -1,0 +1,12 @@
+{
+  "name": "tracebrief",
+  "version": "0.1.0",
+  "description": "Playwright failure triage for GitHub pull requests",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "demo": "node src/run.mjs demo/checkout-report.json --baseline demo/baseline.json"
+  }
+}

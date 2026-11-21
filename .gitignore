@@ -1,0 +1,8 @@
+/launch/
+node_modules/
+test-results/
+playwright-report/
+/demo/reproduce/checkout-report.json
+/demo/reproduce/package-lock.json
+.env
+.env.*

@@ -1,0 +1,37 @@
+name: Check TraceBrief
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Run unit and integration tests
+        run: node --test tests/*.test.mjs
+      - name: Render the demo using the CLI
+        run: |
+          node src/run.mjs demo/checkout-report.json --baseline demo/baseline.json --output "$RUNNER_TEMP/tracebrief.md"
+          grep -Fq '2 unexpected failures' "$RUNNER_TEMP/tracebrief.md"
+          grep -Fq 'Passed in the supplied baseline report.' "$RUNNER_TEMP/tracebrief.md"
+      - name: Exercise the local Action
+        uses: ./
+        id: triage
+        with:
+          report: demo/checkout-report.json
+          baseline: demo/baseline.json
+          comment: 'false'
+      - name: Verify the published counts
+        env:
+          FAILURES: ${{ steps.triage.outputs.failure-count }}
+          FLAKY: ${{ steps.triage.outputs.flaky-count }}
+        run: |
+          test "$FAILURES" = 2
+          test "$FLAKY" = 1
