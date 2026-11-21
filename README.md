@@ -4,7 +4,7 @@ When a Playwright test fails, TraceBrief puts the failing assertion, its locatio
 
 > **Checkout sends signed-in customers to payment.** The assertion expected `/payment` and received `/sign-in`. This test passed in the supplied baseline. Check whether a redirect or session fixture sent the test to the sign-in route.
 
-This example condenses the output from the included checkout suite. [Actual generated comment](demo/sample-comment.md) · [Three annotated public failures](demo/public-examples.md) · [Request a supported pilot](PILOT.md)
+The published Action posted both checkout findings on the demo pull request. [Read the live bot comment](https://github.com/weebo-NGL/Weebo/pull/1#issuecomment-7064273409) · [Three annotated public failures](demo/public-examples.md) · [Try a supported pilot](PILOT.md)
 
 ## Try the demo
 
@@ -20,14 +20,14 @@ To generate fresh reports, go to `demo/reproduce`, run `npm install` and then `n
 
 ## Add it to an existing workflow
 
-1. Copy `action.yml` and the `src` directory into `.github/actions/tracebrief/` in the repository that runs Playwright. Alternatively, once using the published repository, reference its Action by full commit SHA in the workflow's `uses` field.
+1. Use the published release pinned in the example below. For a vendored installation, copy `action.yml` and `src/` into `.github/actions/tracebrief/` and set `uses: ./.github/actions/tracebrief`.
 2. Add the JSON reporter alongside the reporters the team already uses, for example `reporter: [['list'], ['json', { outputFile: 'playwright-report.json' }]]`. Place the triage step in the same job after the test command. The condition below lets it run after a test failure and refresh the comment after a clean rerun.
 3. For same-repository PR comments, use the ordinary `pull_request` event, grant the job `contents: read` and `pull-requests: write`, and serialize runs by workflow and PR. Fork PRs receive a job summary. To use summaries only, set `comment: 'false'` and grant read access.
 
 ```yaml
 - name: Explain Playwright results
   if: ${{ !cancelled() && hashFiles('playwright-report.json') != '' }}
-  uses: ./.github/actions/tracebrief
+  uses: weebo-NGL/Weebo@7a1c1a63a33cd7ced5557f163609a7cbea34b0b8 # TraceBrief 0.1.0
   with:
     report: playwright-report.json
 ```
