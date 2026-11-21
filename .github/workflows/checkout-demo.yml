@@ -1,0 +1,21 @@
+name: Checkout triage demonstration
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  show-comment:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'demo/checkout-triage'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Post the example from the captured Playwright reports
+        uses: weebo-NGL/Weebo@7a1c1a63a33cd7ced5557f163609a7cbea34b0b8
+        with:
+          report: demo/checkout-report.json
+          baseline: demo/baseline.json
